@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Login = () => {
+    const {signIn} = useContext(AuthContext);
     const {
         register,
         handleSubmit,
@@ -10,6 +13,9 @@ const Login = () => {
 
       const formSubmit = data => {
         console.log(data);
+        signIn(data.email, data.password)
+        .then(result => console.log(result.user)
+        )
         reset();
       }
 
